@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.devinrsmith.jblob</groupId>
+    <artifactId>jblob</artifactId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>jblob-s3</artifactId>
+  <name>jblob-s3</name>
+  <properties>
+    <aws-java-sdk-s3.version>1.9.20.1</aws-java-sdk-s3.version>
+  </properties>
+  <dependencies>
+    <dependency>
+      <groupId>com.devinrsmith.jblob</groupId>
+      <artifactId>jblob-common</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.devinrsmith.jblob</groupId>
+      <artifactId>jblob-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.amazonaws</groupId>
+      <artifactId>aws-java-sdk-s3</artifactId>
+      <version>${aws-java-sdk-s3.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
+</project>
