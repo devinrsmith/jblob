@@ -1,6 +1,7 @@
 package com.devinrsmith.jblob.s3;
 
 import com.amazonaws.AmazonClientException;
+import com.amazonaws.services.s3.Headers;
 import com.amazonaws.services.s3.model.AmazonS3Exception;
 import com.amazonaws.services.s3.model.ObjectListing;
 import com.amazonaws.services.s3.model.ObjectMetadata;
@@ -50,7 +51,7 @@ public class JBlobS3 implements JBlob {
     }
 
     @Override
-    public void upload(String key, InputStream in, String contentType, Map<String, String> properties) throws InterruptedException, IOException {
+    public void upload(String key, InputStream in, Map<String, String> properties) throws InterruptedException, IOException {
         Preconditions.checkNotNull(key);
         Preconditions.checkNotNull(in);
         Preconditions.checkNotNull(properties);
@@ -63,9 +64,12 @@ public class JBlobS3 implements JBlob {
 
         // the length is the important part here
         final ObjectMetadata m = new ObjectMetadata();
+
         m.setUserMetadata(properties);
-        m.setContentType(contentType);
         m.setContentLength(tmp.toFile().length());
+        m.setContentType(properties.get(Headers.CONTENT_TYPE));
+        m.setContentEncoding(properties.get(Headers.CONTENT_ENCODING));
+        m.setContentDisposition(properties.get(Headers.CONTENT_DISPOSITION));
 
         // read from temporary file, let the OS delete on close
         try (final InputStream localIn = Files.newInputStream(tmp, StandardOpenOption.DELETE_ON_CLOSE)) {

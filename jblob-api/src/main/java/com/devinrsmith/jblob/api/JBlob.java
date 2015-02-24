@@ -40,7 +40,7 @@ public interface JBlob {
     /**
      * Create or overwrite key with bytes from in.
      */
-    void upload(String key, InputStream in, String contentType, Map<String, String> properties) throws InterruptedException, IOException;
+    void upload(String key, InputStream in, Map<String, String> properties) throws InterruptedException, IOException;
 
     /**
      * Expected to return BlobMeta on success, empty if resource doesn't exist, and IOException otherwise
@@ -65,15 +65,7 @@ public interface JBlob {
     // ------------------------------------------------------------------------------------------------
 
     default void upload(String key, InputStream in) throws InterruptedException, IOException {
-        upload(key, in, null, Collections.emptyMap());
-    }
-
-    default void upload(String key, InputStream in, String contentType) throws InterruptedException, IOException {
-        upload(key, in, contentType, Collections.emptyMap());
-    }
-
-    default void upload(String key, InputStream in, Map<String, String> properties) throws InterruptedException, IOException {
-        upload(key, in, null, properties);
+        upload(key, in, Collections.emptyMap());
     }
 
     /**
@@ -135,7 +127,7 @@ public interface JBlob {
             return;
         }
         try (final InputStream in = Files.newInputStream(tmp, StandardOpenOption.DELETE_ON_CLOSE)) {
-            upload(key, in, meta.get().getContentType().orElse(null), meta.get().getProperties());
+            upload(key, in, meta.get().getProperties());
         }
     }
 
