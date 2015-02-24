@@ -67,9 +67,18 @@ public class JBlobS3 implements JBlob {
 
         m.setUserMetadata(properties);
         m.setContentLength(tmp.toFile().length());
-        m.setContentType(properties.get(Headers.CONTENT_TYPE));
-        m.setContentEncoding(properties.get(Headers.CONTENT_ENCODING));
-        m.setContentDisposition(properties.get(Headers.CONTENT_DISPOSITION));
+        final String contentType = properties.get(Headers.CONTENT_TYPE);
+        if (contentType != null) {
+            m.setContentType(contentType);
+        }
+        final String encoding = properties.get(Headers.CONTENT_ENCODING);
+        if (encoding != null) {
+            m.setContentEncoding(encoding);
+        }
+        final String disposition = properties.get(Headers.CONTENT_DISPOSITION);
+        if (disposition != null) {
+            m.setContentDisposition(disposition);
+        }
 
         // read from temporary file, let the OS delete on close
         try (final InputStream localIn = Files.newInputStream(tmp, StandardOpenOption.DELETE_ON_CLOSE)) {
