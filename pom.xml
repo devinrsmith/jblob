@@ -14,6 +14,8 @@
     <module>jblob-common</module>
     <module>jblob-api</module>
     <module>jblob-s3</module>
+    <module>jblob-keyless-api</module>
+    <module>jblob-uri-api</module>
   </modules>
 
   <properties>
@@ -32,6 +34,11 @@
       <dependency>
         <groupId>com.devinrsmith.jblob</groupId>
         <artifactId>jblob-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.devinrsmith.jblob</groupId>
+        <artifactId>jblob-keyless-api</artifactId>
         <version>${project.version}</version>
       </dependency>
       <dependency>

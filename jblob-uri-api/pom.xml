@@ -7,15 +7,13 @@
     <artifactId>jblob</artifactId>
     <version>0.1-SNAPSHOT</version>
   </parent>
-  <groupId>com.devinrsmith.jblob</groupId>
-  <artifactId>jblob-api</artifactId>
-  <version>0.1-SNAPSHOT</version>
-  <name>jblob-api</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+  <artifactId>jblob-uri-api</artifactId>
+  <name>jblob-uri-api</name>
   <dependencies>
+    <dependency>
+      <groupId>com.devinrsmith.jblob</groupId>
+      <artifactId>jblob-keyless-api</artifactId>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
